@@ -5,6 +5,7 @@
   "dependencies": {
     "dayjs": "^1.8.15",
     "normalize.css": "^8.0.1",
+    "prop-types": "^15.7.2",
     "react": "^16.9.0",
     "react-date-range": "^1.0.0-beta",
     "react-dom": "^16.9.0",

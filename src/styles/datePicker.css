@@ -1,3 +1,4 @@
+/* RoomInfo's styles */
 .rdrCalendarWrapper {
     display: flex;
     border: 1px solid rgb(56, 71, 11);
@@ -50,4 +51,23 @@
 .rdrDayNumber span {
     font-weight: 400;
     color: rgb(56, 71, 11);
+}
+
+/* BookingModal's styles */
+form .rdrNextPrevButton {
+    background-color: inherit;
+}
+
+form .rdrMonthAndYearPickers {
+    visibility: visible;
+}
+
+form .rdrMonths {
+    position: static;
+}
+
+form .rdrCalendarWrapper {
+    position: absolute;
+    left: 328px;
+    top: -55px;
 }

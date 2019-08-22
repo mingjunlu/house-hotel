@@ -1,0 +1,279 @@
+html {
+    font-size: 12px;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    backdrop-filter: blur(20px);
+    background-color: rgba(218, 218, 218, 0.75);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+}
+
+.container {
+    width: 1110px;
+    height: 602px;
+    background-color: white;
+    border: 1px solid rgb(56, 71, 11);
+    display: flex;
+}
+
+.formWrapper {
+    width: 445px;
+    color: white;
+    background-color: rgb(56, 71, 11);
+    padding: 50px 65px 0 65px;
+}
+
+.form {
+    width: 315px;
+}
+
+.label {
+    display: block;
+    margin-bottom: 16px;
+}
+
+.labelText {
+    display: inline-block;
+    font-family: "Noto Sans TC";
+    font-size: 14px;
+    line-height: 20px;
+    margin-bottom: 7px;
+}
+
+.input {
+    display: block;
+    width: 100%;
+    line-height: 38px;
+    color: rgb(106, 106, 106);
+    background-color: white;
+    text-align: left;
+    font-size: 16px;
+    padding: 0 10px;
+    max-height: 38px;
+    font-family: "Open Sans", "Noto Sans TC";
+    font-weight: 600;
+    border: 1px solid white;
+}
+
+button.input {
+    position: relative;
+}
+
+button.input::after {
+    content: "▾";
+    color: rgb(56, 71, 11);
+    font-size: 20px;
+    position: absolute;
+    right: 9px;
+    transform: translateY(-1px);
+}
+
+.datePicker {
+    position: relative;
+    display: none;
+    z-index: 1;
+}
+
+.duration {
+    font-family: "Noto Sans TC";
+    font-size: 14px;
+    line-height: 20px;
+    color: rgb(148, 156, 124);
+    padding-bottom: 14px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid rgba(148, 156, 124, 0.5);
+}
+
+.inTotal {
+    text-align: right;
+    font-family: "Noto Sans TC";
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.totalAmount {
+    text-align: right;
+    font-family: "Open Sans";
+    font-weight: 600;
+    font-size: 26px;
+    line-height: 36px;
+    margin-bottom: 20px;
+}
+
+.submit {
+    display: block;
+    width: 100%;
+    font-size: 18px;
+    line-height: 27px;
+    font-family: "Noto Sans TC";
+    font-weight: 600;
+    border: 1px solid white;
+    padding: 7.5px 0;
+    margin-bottom: 18px;
+}
+
+.reminder {
+    font-family: "Noto Sans TC";
+    line-height: 18px;
+    text-align: center;
+}
+
+.readme {
+    flex-grow: 1;
+    padding: 51px 30px 26px 30px;
+    position: relative;
+}
+
+.closeButton {
+    outline: none;
+    position: absolute;
+    right: 22.6px;
+    top: 22.6px;
+}
+
+.closeButton:active {
+    transform: translateY(2px);
+}
+
+.closeIcon {
+    padding: 16px;
+}
+
+.roomTypeHeading {
+    display: flex;
+    align-items: center;
+    max-width: 530px;
+    margin-bottom: 8px;
+}
+
+.roomRulesHeading {
+    display: flex;
+    align-items: center;
+    max-width: 530px;
+    margin-bottom: 8px;
+}
+
+.roomType {
+    font-family: "Open Sans";
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 33px;
+    display: inline-block;
+}
+
+.hairline {
+    margin-left: 6.5px;
+    flex-grow: 1;
+    height: 1px;
+    background-color: rgba(148, 156, 124, 0.2);
+    transform: translateY(2px);
+}
+
+.description {
+    font-family: "Noto Sans TC";
+    font-size: 14px;
+    line-height: 24px;
+    color: rgb(56, 71, 11);
+}
+
+.features {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -16px;
+    margin-bottom: 26px;
+}
+
+.feature {
+    flex-basis: 11%;
+    pointer-events: none;
+    user-select: none;
+    margin-top: 27px;
+    text-align: center;
+}
+
+.featureIcon {
+    height: 48px;
+}
+
+.headingTitle {
+    font-family: "Noto Sans TC";
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.roomRules {
+    list-style-type: disc;
+    margin-left: 20px;
+    margin-bottom: 19px;
+}
+
+.roomRule {
+    font-family: "Noto Sans TC";
+    font-weight: 300;
+    font-size: 12px;
+    line-height: 26px;
+}
+
+.stepsHeading {
+    display: flex;
+    align-items: center;
+    max-width: 530px;
+    margin-bottom: 19px;
+}
+
+.steps {
+    display: flex;
+}
+
+.step {
+    width: 160px;
+    height: 136px;
+}
+
+.stepIconWrapper {
+    background-color: rgb(148, 156, 124);
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.stepIcon {
+    display: block;
+    width: 30px;
+    height: 30px;
+}
+
+.stepTextContainer {
+    height: 86px;
+    border: 1px solid rgb(148, 156, 124);
+    border-radius: 0px 0px 10px 10px;
+    padding: 12px 0 18px 0;
+}
+
+.stepText {
+    color: rgb(56, 71, 11);
+    font-family: "Noto Sans TC";
+    font-weight: 300;
+    font-size: 12px;
+    line-height: 18px;
+    text-align: center;
+}
+
+.arrowWrapper {
+    width: 31px;
+    height: 50px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
