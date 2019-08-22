@@ -1,0 +1,53 @@
+.rdrCalendarWrapper {
+    display: flex;
+    border: 1px solid rgb(56, 71, 11);
+}
+
+.rdrMonthAndYearPickers {
+    visibility: hidden;
+}
+
+.rdrMonths {
+    justify-content: center;
+    position: relative;
+    bottom: 42px;
+}
+
+.rdrWeekDays {
+    border-bottom: 1px solid rgba(56, 71, 11, 0.1);
+}
+
+.rdrWeekDay {
+    color: rgba(56, 71, 11, 0.5);
+    font-weight: 700;
+}
+
+.rdrDayDisabled {
+    background: inherit;
+}
+
+.rdrDayDisabled > .rdrDayNumber {
+    color: rgba(56, 71, 11, 0.3);
+    text-decoration: line-through;
+}
+
+.rdrMonthName {
+    text-align: center;
+    line-height: 17px;
+    font-weight: 700;
+    color: rgb(56, 71, 11);
+}
+
+.rdrNextPrevButton, .rdrNextPrevButton:hover {
+    background: inherit;
+    z-index: 1;
+}
+
+.rdrDayToday .rdrDayNumber span:after {
+    background: rgb(56, 71, 11);
+}
+
+.rdrDayNumber span {
+    font-weight: 400;
+    color: rgb(56, 71, 11);
+}

@@ -22,8 +22,9 @@ module.exports = {
     'react',
   ],
   rules: {
-    'react/jsx-filename-extension': 'off',
     'indent': ['error', 4, { 'SwitchCase': 1 }],
+    'space-before-function-paren': 'off',
+    'react/jsx-filename-extension': 'off',
     'react/jsx-indent': ['error', 4],
     'react/jsx-indent-props': ['error', 4],
     'react/state-in-constructor': 'off',

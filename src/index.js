@@ -9,7 +9,7 @@ import App from './components/App';
 WebFont.load({
     google: {
         families: [
-            'Open Sans:300,400',
+            'Open Sans:300,400,600,700',
             'Noto Sans TC:100,400',
         ],
     },
