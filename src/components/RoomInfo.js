@@ -15,7 +15,7 @@ class RoomInfo extends React.Component {
     state = {
         startDate: dayjs().startOf('day').toDate(),
         endDate: dayjs().startOf('day').add(1, 'day').toDate(),
-        isModalOpen: true,
+        isModalOpen: false,
     }
 
     toggleModal = () => {
