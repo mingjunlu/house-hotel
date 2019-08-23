@@ -9,16 +9,17 @@ const calculateBill = (tripInfo = {}) => {
     } = tripInfo;
 
     const nights = dayjs(checkOutDate).diff(dayjs(checkInDate), 'day');
-    const totalAmount = [...Array(nights).keys()]
-        .map((num) => dayjs(checkInDate).add(num, 'day').day())
-        .reduce((total, current) => {
-            if ((current > 0) && (current < 5)) {
-                return (total + weekdayPrice);
-            }
-            return (total + weekendPrice);
-        }, 0);
+    const days = [...Array(nights).keys()].map((num) => dayjs(checkInDate).add(num, 'day').day())
 
-    return { totalAmount, nights };
+    const counter = { weeknights: 0 };
+    days.forEach((day) => {
+        const isWeeknight = (day > 0) && (day < 5);
+        if (isWeeknight) { counter.weeknights += 1; }
+    });
+    const { weeknights } = counter;
+
+    const totalAmount = (weeknights * weekdayPrice) + ((nights - weeknights) * weekendPrice);
+    return { totalAmount, nights, weeknights };
 };
 
 export default calculateBill;

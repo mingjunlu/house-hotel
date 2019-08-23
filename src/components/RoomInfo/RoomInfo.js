@@ -13,12 +13,12 @@ import Sidebar from './Sidebar';
 import RoomStatus from './RoomStatus';
 
 const apiUrl = process.env.REACT_APP_API_URL;
-const startOfToday = dayjs().startOf('day');
+const tomorrow = dayjs().startOf('day').add(1, 'day');
 
 class RoomInfo extends React.Component {
     state = {
-        startDate: startOfToday.valueOf(),
-        endDate: startOfToday.add(1, 'day').valueOf(),
+        startDate: tomorrow.valueOf(),
+        endDate: tomorrow.add(1, 'day').valueOf(),
         isModalOpen: false,
         isLoading: true,
         hasError: false,
@@ -56,7 +56,7 @@ class RoomInfo extends React.Component {
     render () {
         const { location: { state: locationState } } = this.props;
         if (!locationState) { return <Redirect to="/" />; }
-        const { roomName, imageUrl } = locationState;
+        const { roomId, roomName, imageUrl } = locationState;
         const {
             startDate,
             endDate,
@@ -70,7 +70,7 @@ class RoomInfo extends React.Component {
         const hasDifferentStartDate = !dayjs(startDate).isSame(dayjs(), 'day');
         const hasDifferentEndDate = !dayjs(endDate).isSame(dayjs().add(1, 'day'));
         const hasDifferentRange = (hasDifferentStartDate || hasDifferentEndDate);
-        const hotelBill = calculateBill({
+        const { totalAmount, nights } = calculateBill({
             checkInDate: startDate,
             checkOutDate: endDate,
             weekdayPrice: info.weekdayPrice,
@@ -83,6 +83,9 @@ class RoomInfo extends React.Component {
                         toggleModal={this.toggleModal}
                         startTime={hasDifferentRange && startDate}
                         endTime={hasDifferentRange && endDate}
+                        weekdayPrice={info.weekdayPrice}
+                        weekendPrice={info.weekendPrice}
+                        roomId={roomId}
                     />
                 )}
                 <div
@@ -92,8 +95,8 @@ class RoomInfo extends React.Component {
                     <Sidebar
                         toggleModal={this.toggleModal}
                         imageUrl={imageUrl}
-                        totalAmount={hotelBill.totalAmount}
-                        nights={hotelBill.nights}
+                        totalAmount={totalAmount}
+                        nights={nights}
                     />
                     <RoomStatus
                         updateRange={this.updateRange}

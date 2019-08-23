@@ -8,7 +8,7 @@ import getRoomAbstract from '../../utils/getRoomAbstract';
 import checkMarkIcon from '../../assets/icons/check-mark.svg';
 import crossMarkIcon from '../../assets/icons/cross-mark.svg';
 
-const startOfToday = dayjs().startOf('day');
+const tomorrow = dayjs().startOf('day').add(1, 'day');
 
 const RoomStatus = (props) => {
     const {
@@ -86,8 +86,8 @@ const RoomStatus = (props) => {
                         showMonthAndYearPickers={false}
                         showDateDisplay={false}
                         ranges={[dateRange]}
-                        minDate={new Date()}
-                        maxDate={startOfToday.add(90, 'day').toDate()}
+                        minDate={tomorrow.toDate()}
+                        maxDate={tomorrow.add(89, 'day').toDate()}
                         rangeColors={['rgba(148, 156, 124, 0.8)']}
                         onChange={updateRange}
                     />

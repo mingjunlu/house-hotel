@@ -2,17 +2,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import dayjs from 'dayjs';
 import { Calendar } from 'react-date-range';
+import calculateBill from '../../utils/calculateBill';
 import css from '../../styles/BookingModal/Form.module.css';
 
 const fmt = 'YYYY - MM - DD';
-const startOfToday = dayjs().startOf('day');
+const tomorrow = dayjs().startOf('day').add(1, 'day');
 
 class Form extends React.Component {
     state = {
         name: '',
         phone: '',
-        startDate: startOfToday.valueOf(),
-        endDate: startOfToday.add(1, 'day').valueOf(),
+        startDate: tomorrow.valueOf(),
+        endDate: tomorrow.add(1, 'day').valueOf(),
         isPickingStartDate: false,
         isPickingEndDate: false,
     }
@@ -67,14 +68,29 @@ class Form extends React.Component {
     updatePhone = (event) => {
         const rawInput = event.target.value;
         const cleanText = rawInput.replace(/-|\./g, '').trim(); // 去掉小數點和連字號
-        if (!Number.isNaN(Number(cleanText))) {
-            // 只接受數字
-            this.setState({ phone: cleanText });
-        }
+        const isValid = !Number.isNaN(Number(cleanText)); // 只接受數字
+        if (isValid) { this.setState({ phone: cleanText }); }
+    }
+
+    preSubmit = (event) => {
+        event.preventDefault();
+        const { submitForm } = this.props;
+        const {
+            name,
+            phone,
+            startDate,
+            endDate,
+        } = this.state;
+        submitForm({
+            name,
+            phone,
+            startTime: startDate,
+            endTime: endDate,
+        });
     }
 
     render() {
-        const { submitForm } = this.props;
+        const { weekdayPrice, weekendPrice } = this.props;
         const {
             isPickingStartDate,
             isPickingEndDate,
@@ -83,13 +99,22 @@ class Form extends React.Component {
             startDate,
             endDate,
         } = this.state;
-        const duration = dayjs(endDate).diff(dayjs(startDate), 'day') + 1;
+        const { totalAmount, nights, weeknights } = calculateBill({
+            checkInDate: startDate,
+            checkOutDate: endDate,
+            weekdayPrice,
+            weekendPrice,
+        });
+        const countsOnWeekday = (weeknights === 0) ? '' : `，${weeknights}晚平日`;
+        const countsOnWeekend = (nights === weeknights) ? '' : `，${nights - weeknights}晚假日`;
+        const duration = `${nights + 1}天${countsOnWeekday}${countsOnWeekend}`;
         return (
             <div className={css.formWrapper}>
-                <form className={css.form} onSubmit={submitForm}>
+                <form className={css.form} onSubmit={this.preSubmit}>
                     <label htmlFor="name" className={css.label}>
                         <span className={css.labelText}>姓名</span>
                         <input
+                            required
                             id="name"
                             type="text"
                             className={css.input}
@@ -101,8 +126,10 @@ class Form extends React.Component {
                     <label htmlFor="tel" className={css.label}>
                         <span className={css.labelText}>手機號碼</span>
                         <input
+                            required
                             id="tel"
                             type="text"
+                            minLength={10}
                             maxLength={10}
                             className={css.input}
                             autoComplete="off"
@@ -119,8 +146,8 @@ class Form extends React.Component {
                     <div className={css.datePicker} style={{ display: isPickingStartDate ? 'block' : null }}>
                         <Calendar
                             showMonthAndYearPickers={false}
-                            minDate={startOfToday.toDate()}
-                            maxDate={startOfToday.add(89, 'day').toDate()}
+                            minDate={tomorrow.toDate()}
+                            maxDate={tomorrow.add(88, 'day').toDate()}
                             color="rgba(148, 156, 124, 0.8)"
                             date={new Date(startDate)}
                             onChange={this.pickStartDate}
@@ -136,15 +163,15 @@ class Form extends React.Component {
                         <Calendar
                             showMonthAndYearPickers={false}
                             minDate={dayjs(startDate).add(1, 'day').toDate()}
-                            maxDate={startOfToday.add(90, 'day').toDate()}
+                            maxDate={tomorrow.add(89, 'day').toDate()}
                             color="rgba(148, 156, 124, 0.8)"
                             date={new Date(endDate)}
                             onChange={this.pickEndDate}
                         />
                     </div>
-                    <p className={css.duration}>{`${duration}天，1晚平日`}</p>
+                    <p className={css.duration}>{duration}</p>
                     <p className={css.inTotal}>總計</p>
-                    <p className={css.totalAmount}>$1,380</p>
+                    <p className={css.totalAmount}>{`$${totalAmount}`}</p>
                     <button type="submit" className={css.submit}>確認送出</button>
                     <p className={css.reminder}>此預約系統僅預約功能，並不會對您進行收費</p>
                 </form>
@@ -157,6 +184,8 @@ Form.propTypes = {
     submitForm: PropTypes.func.isRequired,
     startTime: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]).isRequired,
     endTime: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]).isRequired,
+    weekdayPrice: PropTypes.number.isRequired,
+    weekendPrice: PropTypes.number.isRequired,
 };
 
 export default Form;

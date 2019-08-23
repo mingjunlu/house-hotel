@@ -36,10 +36,15 @@ const Message = ({
 );
 
 Message.propTypes = {
-    toggleModal: PropTypes.func.isRequired,
-    iconPath: PropTypes.string.isRequired,
+    toggleModal: PropTypes.func,
+    iconPath: PropTypes.string,
     title: PropTypes.string.isRequired,
     sentences: PropTypes.arrayOf(PropTypes.string).isRequired,
+};
+
+Message.defaultProps = {
+    toggleModal: () => null,
+    iconPath: '',
 };
 
 export default Message;
