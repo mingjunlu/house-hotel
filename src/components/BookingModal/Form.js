@@ -171,7 +171,7 @@ class Form extends React.Component {
                     </div>
                     <p className={css.duration}>{duration}</p>
                     <p className={css.inTotal}>總計</p>
-                    <p className={css.totalAmount}>{`$${totalAmount}`}</p>
+                    <p className={css.totalAmount}>{`$${totalAmount.toLocaleString()}`}</p>
                     <button type="submit" className={css.submit}>確認送出</button>
                     <p className={css.reminder}>此預約系統僅預約功能，並不會對您進行收費</p>
                 </form>

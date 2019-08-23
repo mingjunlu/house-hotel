@@ -1,3 +1,8 @@
+@keyframes loading {
+    from { background-position-x: 100%; }
+    to { background-position-x: 0%; }
+}
+
 .container {
     display: flex;
 }
@@ -6,7 +11,17 @@
     flex-shrink: 0;
     min-height: 100vh;
     width: 573px;
-    background-color: rgb(236, 236, 236);
+    background: linear-gradient(
+        -90deg,
+        rgb(236, 236, 236) 0%,
+        rgb(236, 236, 236) 40%,
+        rgb(232, 232, 232) 50%,
+        rgb(236, 236, 236) 60%,
+        rgb(236, 236, 236) 100%
+    );
+    background-repeat: repeat;
+    background-size: 400% 100%;
+    animation: loading 1.5s ease infinite;
 }
 
 .nav {
