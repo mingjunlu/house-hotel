@@ -1,0 +1,34 @@
+.background {
+    font-size: 12px;
+    color: white;
+    background-color: black;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 0;
+}
+
+.background::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: url("../../assets/homepage/01.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.6;
+}
+
+.container {
+    width: 1100px;
+    height: 550px;
+    display: flex;
+    justify-content: space-between;
+}

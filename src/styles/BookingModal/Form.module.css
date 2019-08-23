@@ -1,0 +1,101 @@
+.formWrapper {
+    width: 445px;
+    color: white;
+    background-color: rgb(56, 71, 11);
+    padding: 50px 65px 0 65px;
+}
+
+.form {
+    width: 315px;
+}
+
+.label {
+    display: block;
+    margin-bottom: 16px;
+}
+
+.labelText {
+    display: inline-block;
+    font-family: "Noto Sans TC";
+    font-size: 14px;
+    line-height: 20px;
+    margin-bottom: 7px;
+}
+
+.input {
+    display: block;
+    width: 100%;
+    line-height: 38px;
+    color: rgb(106, 106, 106);
+    background-color: white;
+    text-align: left;
+    font-size: 16px;
+    padding: 0 10px;
+    max-height: 38px;
+    font-family: "Open Sans", "Noto Sans TC";
+    font-weight: 600;
+    border: 1px solid white;
+}
+
+button.input {
+    position: relative;
+}
+
+button.input::after {
+    content: "▾";
+    color: rgb(56, 71, 11);
+    font-size: 20px;
+    position: absolute;
+    right: 9px;
+    transform: translateY(-1px);
+}
+
+.datePicker {
+    position: relative;
+    display: none;
+    z-index: 1;
+}
+
+.duration {
+    font-family: "Noto Sans TC";
+    font-size: 14px;
+    line-height: 20px;
+    color: rgb(148, 156, 124);
+    padding-bottom: 14px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid rgba(148, 156, 124, 0.5);
+}
+
+.inTotal {
+    text-align: right;
+    font-family: "Noto Sans TC";
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.totalAmount {
+    text-align: right;
+    font-family: "Open Sans";
+    font-weight: 600;
+    font-size: 26px;
+    line-height: 36px;
+    margin-bottom: 20px;
+}
+
+.submit {
+    display: block;
+    width: 100%;
+    font-size: 18px;
+    line-height: 27px;
+    font-family: "Noto Sans TC";
+    font-weight: 600;
+    border: 1px solid white;
+    padding: 7.5px 0;
+    margin-bottom: 18px;
+}
+
+.reminder {
+    font-family: "Noto Sans TC";
+    line-height: 18px;
+    text-align: center;
+}

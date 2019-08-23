@@ -1,0 +1,12 @@
+html {
+    font-size: 14px;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    color: rgb(56, 71, 11);
+}
+
+.container {
+    display: flex;
+}

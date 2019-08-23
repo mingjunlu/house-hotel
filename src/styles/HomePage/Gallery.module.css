@@ -1,0 +1,40 @@
+.gallery {
+    width: 825px;
+    display: inline-flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    box-shadow: 20px 20px 80px 5px rgba(0, 0, 0, 0.75);
+    transform: translateX(20px);
+}
+
+.room {
+    position: relative;
+}
+
+.imgWrapper {
+    display: block;
+    width: 275px;
+    height: 275px;
+    transition: opacity 300ms ease-in;
+}
+
+.roomName {
+    display: inline-block;
+    color: transparent;
+    font-family: "Open Sans";
+    font-size: 19px;
+    width: 275px;
+    height: 275px;
+    line-height: 275px;
+    text-align: center;
+    position: absolute;
+    top: 0;
+    user-select: none;
+    transition: background-color 150ms ease-in;
+}
+
+.roomName:hover {
+    display: block;
+    color: inherit;
+    background-color: rgba(56, 71, 11, 0.6);
+}

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import css from '../styles/Message.module.css';
-import crossIcon from '../assets/icons/white-cross.svg';
+import css from '../../styles/BookingModal/Message.module.css';
+import crossIcon from '../../assets/icons/white-cross.svg';
 
 const Message = ({
     toggleModal,
@@ -27,7 +27,7 @@ const Message = ({
             </div>
             <h2 className={css.messageTitle}>{title}</h2>
             <div className={css.messageTextContainer}>
-                {sentences.length > 0 && sentences.map((sentence) => (
+                {(sentences.length > 0) && sentences.map((sentence) => (
                     <p className={css.messageText} key={sentence}>{sentence}</p>
                 ))}
             </div>
@@ -36,14 +36,13 @@ const Message = ({
 );
 
 Message.propTypes = {
-    toggleModal: PropTypes.func,
+    toggleModal: PropTypes.func.isRequired,
     iconPath: PropTypes.string,
     title: PropTypes.string,
     sentences: PropTypes.arrayOf(PropTypes.string),
 };
 
 Message.defaultProps = {
-    toggleModal: () => null,
     iconPath: '',
     title: '',
     sentences: [''],

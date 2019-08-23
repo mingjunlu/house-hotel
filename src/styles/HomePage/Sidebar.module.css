@@ -1,0 +1,41 @@
+.header {
+    font-family: "Open Sans", "Noto Sans TC";
+    max-width: 275px;
+    display: inline-flex;
+    flex-direction: column;
+}
+
+.logo {
+    display: block;
+    margin-bottom: auto;
+    pointer-events: none;
+    user-select: none;
+}
+
+.hotelName {
+    font-family: "Open Sans", "Noto Sans TC";
+    line-height: 18px;
+    margin-bottom: 16px;
+    max-width: 275px;
+    display: inline-flex;
+    flex-direction: column;
+}
+
+.address {
+    display: block;
+    font-family: "Noto Sans TC";
+    font-weight: 100;
+    line-height: 17px;
+    margin-bottom: 6px;
+}
+
+.phone {
+    margin-bottom: 6px;
+}
+
+.phone, .email {
+    display: block;
+    font-family: "Open Sans";
+    font-weight: 300;
+    line-height: 17px;
+}

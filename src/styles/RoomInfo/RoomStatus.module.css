@@ -1,0 +1,88 @@
+.main {
+    font-family: "Noto Sans TC";
+    min-width: 793px;
+    padding: 59px 28px;
+}
+
+.room {
+    max-width: 670px;
+}
+
+.roomHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.roomType {
+    font-family: "Open Sans";
+    font-size: 40px;
+    font-weight: 600;
+    line-height: 46px;
+    margin-top: 48px;
+}
+
+.roomSpecs {
+    font-weight: 500;
+    line-height: 20px;
+}
+
+.roomRules {
+    margin-top: 38px;
+    line-height: 24px;
+    font-weight: 300;
+    max-height: 68px;
+}
+
+.roomDetails {
+    list-style-type: disc;
+    margin-top: 35px;
+    margin-left: 21px;
+    line-height: 24px;
+    font-weight: 300;
+    max-height: 94px;
+}
+
+.features {
+    min-height: 164px;
+    margin-top: 45px;
+    margin-left: 10px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.feature {
+    flex-basis: 14.28%;
+    pointer-events: none;
+    user-select: none;
+}
+
+.featureWithout {
+    opacity: 0.2;
+}
+
+.featureIconWrapper {
+    display: inline-block;
+    text-align: center;
+    width: 56px;
+    min-height: 82px;
+}
+
+.featureStatus {
+    vertical-align: top;
+}
+
+.availability {
+    margin-top: 14px;
+    line-height: 20px;
+    font-weight: 500;
+}
+
+.calendar {
+    max-width: 700px;
+    margin-top: 8px;
+    height: 370px;
+    overflow: hidden;
+    text-align: center;
+    font-family: "Open Sans";
+}
