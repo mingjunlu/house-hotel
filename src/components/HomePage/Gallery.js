@@ -13,8 +13,6 @@ const Gallery = ({ rooms }) => {
                     name,
                     path,
                     imageUrl,
-                    weekdayPrice,
-                    weekendPrice,
                 } = room;
                 const newUrl = imageUrl
                     .split('&')
@@ -26,13 +24,7 @@ const Gallery = ({ rooms }) => {
                     .join('&');
                 const destination = {
                     pathname: path,
-                    state: {
-                        roomId: id,
-                        roomName: name,
-                        imageUrl: newUrl,
-                        weekdayPrice,
-                        weekendPrice,
-                    },
+                    state: { roomId: id, roomName: name, imageUrl: newUrl },
                 };
                 return (
                     <Link
@@ -57,13 +49,7 @@ Gallery.propTypes = {
         name: PropTypes.string,
         imageUrl: PropTypes.string,
         path: PropTypes.string,
-        weekdayPrice: PropTypes.number,
-        weekendPrice: PropTypes.number,
-    })),
-};
-
-Gallery.defaultProps = {
-    rooms: [],
+    })).isRequired,
 };
 
 export default Gallery;

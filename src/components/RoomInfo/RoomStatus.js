@@ -4,6 +4,7 @@ import dayjs from 'dayjs';
 import { DateRange } from 'react-date-range';
 import css from '../../styles/RoomInfo/RoomStatus.module.css';
 import getRoomFeatures from '../../utils/getRoomFeatures';
+import getRoomAbstract from '../../utils/getRoomAbstract';
 import checkMarkIcon from '../../assets/icons/check-mark.svg';
 import crossMarkIcon from '../../assets/icons/cross-mark.svg';
 
@@ -11,13 +12,31 @@ const startOfToday = dayjs().startOf('day');
 
 const RoomStatus = (props) => {
     const {
-        roomName,
-        weekdayPrice,
-        weekendPrice,
+        updateRange,
         startTime,
         endTime,
-        updateRange,
+        roomName,
+        bathrooms,
+        beds,
+        checkInEarly,
+        checkInLate,
+        checkOut,
+        details,
+        features,
+        minGuests,
+        maxGuests,
+        size,
+        weekdayPrice,
+        weekendPrice,
     } = props;
+    const roomSpecs = getRoomAbstract({
+        bathrooms,
+        beds,
+        features,
+        minGuests,
+        maxGuests,
+        size,
+    });
     const dateRange = {
         startDate: new Date(startTime),
         endDate: new Date(endTime),
@@ -28,21 +47,20 @@ const RoomStatus = (props) => {
             <article className={css.room}>
                 <div className={css.roomHeader}>
                     <h1 className={css.roomType}>{roomName}</h1>
-                    <h2 className={css.roomSpecs}>1人・單人床・附早餐・衛浴1間・18平方公尺</h2>
+                    <h2 className={css.roomSpecs}>{roomSpecs}</h2>
                 </div>
                 <div className={css.roomRules}>
                     <p>{`平日（一～四）價格：${weekdayPrice} / 假日（五〜日）價格：${weekendPrice}`}</p>
-                    <p>入住時間：15:00（最早）/ 21:00（最晚）</p>
-                    <p>退房時間：10:00</p>
+                    <p>{`入住時間：${checkInEarly}（最早）/ ${checkInLate}（最晚）`}</p>
+                    <p>{`退房時間：${checkOut}`}</p>
                 </div>
                 <ul className={css.roomDetails}>
-                    <li>單人間僅供一位客人使用。</li>
-                    <li>臥室配有單人床和私人浴室。 </li>
-                    <li>您需要的一切為您準備：床單和毯子，毛巾，肥皂和洗髮水，吹風機。</li>
-                    <li>房間裡有AC，當然還有WiFi。</li>
+                    {details.split('；').map((sentence) => (
+                        <li key={sentence}>{`${sentence}.`}</li>
+                    ))}
                 </ul>
                 <ul className={css.features}>
-                    {getRoomFeatures().map(({ exists, path }) => {
+                    {getRoomFeatures(features).map(({ exists, path }) => {
                         let [liClass, imgSrc] = [css.feature, checkMarkIcon];
                         if (!exists) {
                             liClass = `${css.feature} ${css.featureWithout}`;
@@ -80,20 +98,37 @@ const RoomStatus = (props) => {
 };
 
 RoomStatus.propTypes = {
-    roomName: PropTypes.string,
-    weekdayPrice: PropTypes.number,
-    weekendPrice: PropTypes.number,
-    startTime: PropTypes.number,
-    endTime: PropTypes.number,
     updateRange: PropTypes.func.isRequired,
-};
-
-RoomStatus.defaultProps = {
-    roomName: '',
-    weekdayPrice: 9999,
-    weekendPrice: 9999,
-    startTime: startOfToday.valueOf(),
-    endTime: startOfToday.add(1, 'day').valueOf(),
+    startTime: PropTypes.number.isRequired,
+    endTime: PropTypes.number.isRequired,
+    roomName: PropTypes.string.isRequired,
+    bathrooms: PropTypes.number.isRequired,
+    beds: PropTypes.number.isRequired,
+    checkInEarly: PropTypes.string.isRequired,
+    checkInLate: PropTypes.string.isRequired,
+    checkOut: PropTypes.string.isRequired,
+    details: PropTypes.string.isRequired,
+    features: PropTypes.shape({
+        /* eslint-disable quote-props */
+        'Wi-Fi': PropTypes.bool,
+        'Breakfast': PropTypes.bool,
+        'Mini-Bar': PropTypes.bool,
+        'Room-Service': PropTypes.bool,
+        'Television': PropTypes.bool,
+        'Air-Conditioner': PropTypes.bool,
+        'Refrigerator': PropTypes.bool,
+        'Sofa': PropTypes.bool,
+        'Great-View': PropTypes.bool,
+        'Smoke-Free': PropTypes.bool,
+        'Child-Friendly': PropTypes.bool,
+        'Pet-Friendly': PropTypes.bool,
+        /* eslint-enable */
+    }).isRequired,
+    minGuests: PropTypes.number.isRequired,
+    maxGuests: PropTypes.number.isRequired,
+    size: PropTypes.number.isRequired,
+    weekdayPrice: PropTypes.number.isRequired,
+    weekendPrice: PropTypes.number.isRequired,
 };
 
 export default RoomStatus;

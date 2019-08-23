@@ -24,6 +24,7 @@ module.exports = {
   rules: {
     'indent': ['error', 4, { 'SwitchCase': 1 }],
     'space-before-function-paren': 'off',
+    'no-plusplus': ['error', { 'allowForLoopAfterthoughts': true }],
     'react/jsx-filename-extension': 'off',
     'react/jsx-indent': ['error', 4],
     'react/jsx-indent-props': ['error', 4],

@@ -21,11 +21,7 @@ HomePage.propTypes = {
         path: PropTypes.string,
         weekdayPrice: PropTypes.number,
         weekendPrice: PropTypes.number,
-    })),
-};
-
-HomePage.defaultProps = {
-    rooms: [],
+    })).isRequired,
 };
 
 export default HomePage;

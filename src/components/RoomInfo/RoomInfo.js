@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import dayjs from 'dayjs';
+import calculateBill from '../../utils/calculateBill';
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
 import '../../styles/datePicker.css';
@@ -34,7 +35,7 @@ class RoomInfo extends React.Component {
                 const { info, reservations } = await json.json();
                 this.setState({ isLoading: false, info, reservations });
             } catch (err) {
-                this.setState({ isLoading: false, hasError: true });
+                this.setState({ hasError: true });
             }
         }
     }
@@ -55,12 +56,7 @@ class RoomInfo extends React.Component {
     render () {
         const { location: { state: locationState } } = this.props;
         if (!locationState) { return <Redirect to="/" />; }
-        const {
-            roomName,
-            imageUrl,
-            weekdayPrice,
-            weekendPrice,
-        } = locationState;
+        const { roomName, imageUrl } = locationState;
         const {
             startDate,
             endDate,
@@ -74,6 +70,12 @@ class RoomInfo extends React.Component {
         const hasDifferentStartDate = !dayjs(startDate).isSame(dayjs(), 'day');
         const hasDifferentEndDate = !dayjs(endDate).isSame(dayjs().add(1, 'day'));
         const hasDifferentRange = (hasDifferentStartDate || hasDifferentEndDate);
+        const hotelBill = calculateBill({
+            checkInDate: startDate,
+            checkOutDate: endDate,
+            weekdayPrice: info.weekdayPrice,
+            weekendPrice: info.weekendPrice,
+        });
         return (
             <React.Fragment>
                 {isModalOpen && (
@@ -87,14 +89,29 @@ class RoomInfo extends React.Component {
                     className={css.container}
                     style={{ ...(isModalOpen ? { maxHeight: '100vh', overflow: 'hidden' } : {}) }}
                 >
-                    <Sidebar toggleModal={this.toggleModal} imageUrl={imageUrl} />
+                    <Sidebar
+                        toggleModal={this.toggleModal}
+                        imageUrl={imageUrl}
+                        totalAmount={hotelBill.totalAmount}
+                        nights={hotelBill.nights}
+                    />
                     <RoomStatus
-                        roomName={roomName}
-                        weekdayPrice={weekdayPrice}
-                        weekendPrice={weekendPrice}
+                        updateRange={this.updateRange}
                         startTime={startDate}
                         endTime={endDate}
-                        updateRange={this.updateRange}
+                        roomName={roomName}
+                        bathrooms={info.bathrooms}
+                        beds={info.beds}
+                        checkInEarly={info.checkInEarly}
+                        checkInLate={info.checkInLate}
+                        checkOut={info.checkOut}
+                        details={info.details.join('；')}
+                        features={info.features}
+                        minGuests={info.minGuests}
+                        maxGuests={info.maxGuests}
+                        size={info.size}
+                        weekdayPrice={info.weekdayPrice}
+                        weekendPrice={info.weekendPrice}
                     />
                 </div>
             </React.Fragment>
@@ -111,8 +128,6 @@ RoomInfo.propTypes = {
             imageUrl: PropTypes.string,
             roomId: PropTypes.string,
             roomName: PropTypes.string,
-            weekdayPrice: PropTypes.number,
-            weekendPrice: PropTypes.number,
         }),
     }).isRequired,
 };

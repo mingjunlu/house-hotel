@@ -12,7 +12,7 @@ import noSmokingIcon from '../assets/icons/no-smoking.svg';
 import airConditionerIcon from '../assets/icons/air-conditioner.svg';
 import sampleData from './sample.json';
 
-/* eslint-disable dot-notation */
+
 const getRoomFeatures = (obj = sampleData.room[0].amenities) => {
     if (obj === false) {
         return [
@@ -31,6 +31,7 @@ const getRoomFeatures = (obj = sampleData.room[0].amenities) => {
         ];
     }
     return [
+        /* eslint-disable dot-notation */
         { path: breakfastIcon, exists: !!obj['Breakfast'] },
         { path: miniBarIcon, exists: !!obj['Mini-Bar'] },
         { path: roomServiceIcon, exists: !!obj['Room-Service'] },
@@ -43,8 +44,9 @@ const getRoomFeatures = (obj = sampleData.room[0].amenities) => {
         { path: petsIcon, exists: !!obj['Pet-Friendly'] },
         { path: noSmokingIcon, exists: !!obj['Smoke-Free'] },
         { path: airConditionerIcon, exists: !!obj['Air-Conditioner'] },
+        /* eslin-enable */
     ];
 };
-/* eslin-enable */
+
 
 export default getRoomFeatures;

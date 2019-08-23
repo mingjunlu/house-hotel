@@ -35,6 +35,8 @@
 }
 
 .roomDetails {
+    font-family: "Open Sans", "Noto Sans TC";
+    font-weight: 300;
     list-style-type: disc;
     margin-top: 35px;
     margin-left: 21px;

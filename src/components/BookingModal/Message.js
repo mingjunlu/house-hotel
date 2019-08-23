@@ -17,7 +17,7 @@ const Message = ({
                 </button>
             )}
             <div className={css.messageIcon}>
-                {title !== '請稍候' ? <img src={iconPath} alt="" /> : (
+                {title !== '請稍候' ? (<img src={iconPath} alt="" />) : (
                     <React.Fragment>
                         <div className={`${css.circle} ${css.circleOne}`} />
                         <div className={`${css.circle} ${css.circleTwo}`} />
@@ -37,15 +37,9 @@ const Message = ({
 
 Message.propTypes = {
     toggleModal: PropTypes.func.isRequired,
-    iconPath: PropTypes.string,
-    title: PropTypes.string,
-    sentences: PropTypes.arrayOf(PropTypes.string),
-};
-
-Message.defaultProps = {
-    iconPath: '',
-    title: '',
-    sentences: [''],
+    iconPath: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    sentences: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default Message;
