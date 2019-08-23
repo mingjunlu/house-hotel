@@ -7,6 +7,7 @@ import 'react-date-range/dist/theme/default.css';
 import '../../styles/datePicker.css';
 import css from '../../styles/RoomInfo/RoomInfo.module.css';
 import BookingModal from '../BookingModal/BookingModal';
+import Mockup from './Mockup';
 import Sidebar from './Sidebar';
 import RoomStatus from './RoomStatus';
 
@@ -60,7 +61,16 @@ class RoomInfo extends React.Component {
             weekdayPrice,
             weekendPrice,
         } = locationState;
-        const { startDate, endDate, isModalOpen } = this.state;
+        const {
+            startDate,
+            endDate,
+            isModalOpen,
+            isLoading,
+            hasError,
+            info,
+            reservations,
+        } = this.state;
+        if (isLoading) { return <Mockup roomName={roomName} imageUrl={imageUrl} />; }
         const hasDifferentStartDate = !dayjs(startDate).isSame(dayjs(), 'day');
         const hasDifferentEndDate = !dayjs(endDate).isSame(dayjs().add(1, 'day'));
         const hasDifferentRange = (hasDifferentStartDate || hasDifferentEndDate);

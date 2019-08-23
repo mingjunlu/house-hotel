@@ -1,0 +1,88 @@
+.container {
+    display: flex;
+}
+
+.header {
+    flex-shrink: 0;
+    min-height: 100vh;
+    width: 573px;
+    background-color: rgb(236, 236, 236);
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    margin-top: 87px;
+    margin-left: 126px;
+    filter: contrast(250%) brightness(250%);
+}
+
+.navLink {
+    font-family: "Noto Sans TC";
+    font-weight: 100;
+    line-height: 20px;
+    margin-left: 9.68px;
+    transform: translateY(-1.5px);
+}
+
+.main {
+    font-family: "Noto Sans TC";
+    min-width: 793px;
+    padding: 59px 28px;
+    max-width: 670px;
+}
+
+.room {
+    max-width: 670px;
+}
+
+.roomHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.roomType {
+    font-family: "Open Sans";
+    font-size: 40px;
+    font-weight: 600;
+    line-height: 46px;
+    margin-top: 48px;
+}
+
+.features {
+    width: 660px;
+    min-height: 164px;
+    margin-top: 280px;
+    margin-left: 10px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.feature {
+    flex-basis: 14.28%;
+    pointer-events: none;
+    user-select: none;
+}
+
+.featureWithout {
+    opacity: 0.2;
+}
+
+.featureIconWrapper {
+    display: inline-block;
+    text-align: center;
+    width: 56px;
+    min-height: 82px;
+}
+
+.featureStatus {
+    vertical-align: top;
+}
+
+.calendar {
+    width: 700px;
+    height: 330px;
+    margin-top: 42px;
+    border: 1px solid rgb(56, 71, 11);
+}
