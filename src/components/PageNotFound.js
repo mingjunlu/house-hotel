@@ -15,7 +15,7 @@ const styles = {
     h1: {
         userSelect: 'none',
         margin: 0,
-        fontFamily: 'sans-serif',
+        fontFamily: 'Arial',
         fontSize: '50px',
         color: 'rgb(240, 240, 240)',
     },

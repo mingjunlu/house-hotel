@@ -10,11 +10,9 @@ import sofaIcon from '../assets/icons/sofa.svg';
 import petsIcon from '../assets/icons/pets.svg';
 import noSmokingIcon from '../assets/icons/no-smoking.svg';
 import airConditionerIcon from '../assets/icons/air-conditioner.svg';
-import sampleData from './sample.json';
 
-
-const getRoomFeatures = (obj = sampleData.room[0].amenities) => {
-    if (obj === false) {
+const getRoomFeatures = (obj = false) => {
+    if (!obj) {
         return [
             { path: breakfastIcon, exists: false },
             { path: miniBarIcon, exists: false },
@@ -47,6 +45,5 @@ const getRoomFeatures = (obj = sampleData.room[0].amenities) => {
         /* eslin-enable */
     ];
 };
-
 
 export default getRoomFeatures;

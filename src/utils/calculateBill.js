@@ -9,7 +9,7 @@ const calculateBill = (tripInfo = {}) => {
     } = tripInfo;
 
     const nights = dayjs(checkOutDate).diff(dayjs(checkInDate), 'day');
-    const days = [...Array(nights).keys()].map((num) => dayjs(checkInDate).add(num, 'day').day())
+    const days = [...Array(nights).keys()].map((num) => dayjs(checkInDate).add(num, 'day').day());
 
     const counter = { weeknights: 0 };
     days.forEach((day) => {

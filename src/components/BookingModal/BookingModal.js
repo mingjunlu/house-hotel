@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 import dayjs from 'dayjs';
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
@@ -12,7 +13,6 @@ import Form from './Form';
 import Notice from './Notice';
 
 const fmt = 'YYYY-MM-DD';
-const apiUrl = process.env.REACT_APP_API_URL;
 
 class BookingModal extends React.Component {
     state = {
@@ -31,11 +31,13 @@ class BookingModal extends React.Component {
             endTime,
         } = formData;
         const date = [dayjs(startTime).format(fmt), dayjs(endTime).format(fmt)];
+        const apiUrl = `/.netlify/functions/order?room=${roomId}`;
         try {
-            await fetch(`${apiUrl}/room/${roomId}`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ name, tel, date }),
+            await axios.post(apiUrl, { name, tel, date }, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json',
+                },
             });
             this.setState({ isLoading: false, isSuccessful: true });
         } catch (err) {

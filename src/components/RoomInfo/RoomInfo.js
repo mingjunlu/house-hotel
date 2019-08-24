@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
+import axios from 'axios';
 import dayjs from 'dayjs';
 import calculateBill from '../../utils/calculateBill';
 import 'react-date-range/dist/styles.css';
@@ -12,7 +13,6 @@ import Mockup from './Mockup';
 import Sidebar from './Sidebar';
 import RoomStatus from './RoomStatus';
 
-const apiUrl = process.env.REACT_APP_API_URL;
 const tomorrow = dayjs().startOf('day').add(1, 'day');
 
 class RoomInfo extends React.Component {
@@ -31,11 +31,18 @@ class RoomInfo extends React.Component {
         if (locationState) {
             const { roomId } = locationState;
             try {
-                const json = await fetch(`${apiUrl}/room/${roomId}`);
-                const { info, reservations } = await json.json();
-                this.setState({ isLoading: false, info, reservations });
+                const resp = await axios.get(`/.netlify/functions/room?id=${roomId}`);
+                const { info, reservations } = resp.data;
+                this.setState({
+                    info,
+                    reservations,
+                    isLoading: false,
+                });
             } catch (err) {
-                this.setState({ hasError: true });
+                this.setState({
+                    hasError: true,
+                    isLoading: false,
+                });
             }
         }
     }
