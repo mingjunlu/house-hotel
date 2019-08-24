@@ -4,6 +4,7 @@
     width: 573px;
     background-size: cover;
     background-position: center;
+    position: relative;
 }
 
 .nav {

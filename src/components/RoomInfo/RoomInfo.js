@@ -22,6 +22,7 @@ class RoomInfo extends React.Component {
         isModalOpen: false,
         isLoading: true,
         hasError: false,
+        imageUrls: [],
         info: {},
         reservations: [],
     }
@@ -32,8 +33,9 @@ class RoomInfo extends React.Component {
             const { roomId } = locationState;
             try {
                 const resp = await axios.get(`/.netlify/functions/room?id=${roomId}`);
-                const { info, reservations } = resp.data;
+                const { imageUrls, info, reservations } = resp.data;
                 this.setState({
+                    imageUrls,
                     info,
                     reservations,
                     isLoading: false,
@@ -63,17 +65,18 @@ class RoomInfo extends React.Component {
     render () {
         const { location: { state: locationState } } = this.props;
         if (!locationState) { return <Redirect to="/" />; }
-        const { roomId, roomName, imageUrl } = locationState;
+        const { roomId, roomName } = locationState;
         const {
             startDate,
             endDate,
             isModalOpen,
             isLoading,
             hasError,
+            imageUrls,
             info,
             reservations,
         } = this.state;
-        if (isLoading) { return <Mockup roomName={roomName} imageUrl={imageUrl} />; }
+        if (isLoading) { return <Mockup roomName={roomName} />; }
         const hasDifferentStartDate = !dayjs(startDate).isSame(dayjs(), 'day');
         const hasDifferentEndDate = !dayjs(endDate).isSame(dayjs().add(1, 'day'));
         const hasDifferentRange = (hasDifferentStartDate || hasDifferentEndDate);
@@ -101,7 +104,7 @@ class RoomInfo extends React.Component {
                 >
                     <Sidebar
                         toggleModal={this.toggleModal}
-                        imageUrl={imageUrl}
+                        imageUrls={imageUrls}
                         totalAmount={totalAmount}
                         nights={nights}
                     />

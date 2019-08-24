@@ -18,7 +18,7 @@ exports.handler = async (event) => {
         };
     }
     const cleanUpResp = (obj) => {
-        const { success, room, booking } = obj;
+        const { room, booking } = obj;
         const info = {
             type: room[0].name,
             details: room[0].description.split('. ').map((sentence) => sentence.replace(/\./g, '')),
@@ -34,7 +34,12 @@ exports.handler = async (event) => {
             size: room[0].descriptionShort.Footage,
             features: room[0].amenities,
         };
-        return { success, info, reservations: booking };
+        const imageUrls = room[0].imageUrl.map((url) => {
+            const urlParts = url.split('&');
+            urlParts.push('h=1068');
+            return urlParts.map((part) => (part.startsWith('w=') ? 'w=573' : part)).join('&');
+        });
+        return { imageUrls, info, reservations: booking };
     };
 
     const { id } = queryStringParameters;

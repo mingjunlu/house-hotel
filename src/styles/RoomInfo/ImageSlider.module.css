@@ -1,0 +1,47 @@
+.slide {
+    width: 573px;
+    height: 1068px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -2;
+}
+
+.image {
+    display: block;
+}
+
+.radio {
+    display: none;
+}
+
+.circles {
+    max-width: 74px;
+    margin: 50px auto 0 auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.label {
+    padding: 7px;
+}
+
+.label:hover {
+    cursor: pointer;
+}
+
+.circle {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 1px solid rgb(56, 71, 11);
+}
+
+.radio:checked ~ .circle {
+    background-color: rgb(56, 71, 11);
+}
+
+.radio:checked ~ .slide {
+    z-index: -1;
+}
