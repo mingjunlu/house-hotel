@@ -14,24 +14,9 @@ const Gallery = ({ rooms }) => {
                     path,
                     imageUrl,
                 } = room;
-                const newUrl = imageUrl
-                    .split('&')
-                    .map((part) => {
-                        if (part.startsWith('w=')) { return 'w=573'; }
-                        if (part.startsWith('h=')) { return 'w=1068'; }
-                        return part;
-                    })
-                    .join('&');
-                const destination = {
-                    pathname: path,
-                    state: { roomId: id, roomName: name, imageUrl: newUrl },
-                };
+                const destination = { pathname: path, state: { roomId: id, roomName: name } };
                 return (
-                    <Link
-                        key={room.id}
-                        to={destination}
-                        className={css.room}
-                    >
+                    <Link key={room.id} to={destination} className={css.room}>
                         <picture className={css.imgWrapper}>
                             <img src={imageUrl} alt="" />
                         </picture>

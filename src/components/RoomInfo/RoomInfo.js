@@ -138,7 +138,6 @@ RoomInfo.propTypes = {
         pathname: PropTypes.string,
         search: PropTypes.string,
         state: PropTypes.shape({
-            imageUrl: PropTypes.string,
             roomId: PropTypes.string,
             roomName: PropTypes.string,
         }),
