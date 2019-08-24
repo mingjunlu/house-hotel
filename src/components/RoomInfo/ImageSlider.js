@@ -14,6 +14,7 @@ class ImageSlider extends React.Component {
     render() {
         const { imageUrls } = this.props;
         const { isTopImgLoaded } = this.state;
+        if (imageUrls.length < 1) { return null; }
         return (
             <div className={css.circles}>
                 <label htmlFor="firstButton" className={css.label}>
