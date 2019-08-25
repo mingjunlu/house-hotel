@@ -19,11 +19,10 @@
     right: 0;
     bottom: 0;
     left: 0;
-    background-image: url("../../assets/homepage/01.jpg");
+    background-color: rgba(0, 0, 0, 0.6);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    opacity: 0.6;
 }
 
 .container {

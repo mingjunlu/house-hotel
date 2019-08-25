@@ -4,7 +4,6 @@
     flex-wrap: wrap;
     flex-direction: column;
     box-shadow: 20px 20px 80px 5px rgba(0, 0, 0, 0.75);
-    transform: translateX(20px);
 }
 
 .room {
