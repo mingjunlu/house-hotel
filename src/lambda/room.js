@@ -13,7 +13,8 @@ exports.handler = async (event) => {
 
         console.log(`${httpMethod} ${path}`);
         const endTime = new global.Date().valueOf();
-        console.log(`Response with status 405 in ${endTime - startTime} ms.\n`);
+        console.log(`Response with status 405 in ${endTime - startTime} ms.`);
+        console.log('--------------------');
 
         return {
             statusCode: 405,
@@ -26,7 +27,8 @@ exports.handler = async (event) => {
 
         console.log(`${httpMethod} ${path}`);
         const endTime = new global.Date().valueOf();
-        console.log(`Response with status 400 in ${endTime - startTime} ms.\n`);
+        console.log(`Response with status 400 in ${endTime - startTime} ms.`);
+        console.log('--------------------');
 
         return {
             statusCode: 400,
@@ -74,7 +76,8 @@ exports.handler = async (event) => {
         const data = cleanUpResp(resp.data);
 
         const endTime = new global.Date().valueOf();
-        console.log(`Response with status 200 in ${endTime - startTime} ms.\n`);
+        console.log(`Response with status 200 in ${endTime - startTime} ms.`);
+        console.log('--------------------');
 
         return {
             statusCode: 200,
@@ -86,7 +89,8 @@ exports.handler = async (event) => {
 
         console.log(`[ERROR] ${errMsg}`);
         const endTime = new global.Date().valueOf();
-        console.log(`Response with status ${status} in ${endTime - startTime} ms.\n`);
+        console.log(`Response with status ${status} in ${endTime - startTime} ms.`);
+        console.log('--------------------');
 
         return {
             statusCode: status,
