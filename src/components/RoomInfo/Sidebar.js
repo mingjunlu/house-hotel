@@ -15,8 +15,10 @@ const Sidebar = (props) => {
     return (
         <header className={css.header}>
             <nav className={css.nav}>
-                <img src={leftArrowIcon} alt="＜" />
-                <Link to="/" className={css.navLink}>查看其它房型</Link>
+                <Link to="/" className={css.navLink}>
+                    <img src={leftArrowIcon} alt="＜" />
+                    <span className={css.navLinkText}>查看其它房型</span>
+                </Link>
             </nav>
             <p className={css.price}>
                 <span className={css.priceAmount}>{`$${totalAmount.toLocaleString()}`}</span>
