@@ -4,14 +4,25 @@ const API_URL = process.env.REACT_APP_API_URL;
 const API_KEY = process.env.REACT_APP_API_KEY;
 
 exports.handler = async (event) => {
-    const { httpMethod } = event;
+    /* eslint-disable no-console */
+    const startTime = new global.Date().valueOf();
+    const { httpMethod, path } = event;
+
     if (httpMethod !== 'GET') {
+        const errMsg = `${httpMethod} method is not supported.`;
+
+        console.log(`${httpMethod} ${path}`);
+        const endTime = new global.Date().valueOf();
+        console.log(`Response with status 405 in ${endTime - startTime} ms.\n`);
+
         return {
             statusCode: 405,
-            body: JSON.stringify({ error: `${httpMethod} method is not supported.` }),
+            body: JSON.stringify({ error: errMsg }),
         };
     }
+
     try {
+        console.log(`${httpMethod} ${path}`);
         const resp = await axios.get(`${API_URL}/rooms`, {
             headers: {
                 'Content-Type': 'application/json',
@@ -30,16 +41,26 @@ exports.handler = async (event) => {
                 path: `/room/${room.name.toLowerCase().replace(/ /g, '-').replace('-room', '')}`,
             };
         });
+
+        const endTime = new global.Date().valueOf();
+        console.log(`Response with status 200 in ${endTime - startTime} ms.\n`);
+
         return {
             statusCode: 200,
             body: JSON.stringify(rooms),
         };
     } catch (err) {
         const { status, statusText, data: { message } } = err.response;
-        const errMsg = { error: `${status} ${statusText} - ${message}` };
+        const errMsg = `${status} ${statusText} - ${message}`;
+
+        console.log(`[ERROR] ${errMsg}`);
+        const endTime = new global.Date().valueOf();
+        console.log(`Response with status ${status} in ${endTime - startTime} ms.\n`);
+
         return {
             statusCode: status,
-            body: JSON.stringify(errMsg),
+            body: JSON.stringify({ error: errMsg }),
         };
     }
+    /* eslint-enable no-console */
 };
