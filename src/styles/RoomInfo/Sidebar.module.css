@@ -21,6 +21,7 @@
 }
 
 .navLinkText {
+    flex-shrink: 0;
     font-family: "Noto Sans TC";
     font-size: 14px;
     font-weight: 100;
