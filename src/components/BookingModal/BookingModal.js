@@ -50,6 +50,16 @@ class BookingModal extends React.Component {
             toggleModal,
             startTime,
             endTime,
+            roomName,
+            bathrooms,
+            beds,
+            checkInEarly,
+            checkInLate,
+            checkOut,
+            features,
+            minGuests,
+            maxGuests,
+            size,
             weekdayPrice,
             weekendPrice,
         } = this.props;
@@ -85,7 +95,21 @@ class BookingModal extends React.Component {
                         weekdayPrice={weekdayPrice}
                         weekendPrice={weekendPrice}
                     />
-                    <Notice toggleModal={toggleModal} />
+                    <Notice
+                        toggleModal={toggleModal}
+                        roomName={roomName}
+                        bathrooms={bathrooms}
+                        beds={beds}
+                        checkInEarly={checkInEarly}
+                        checkInLate={checkInLate}
+                        checkOut={checkOut}
+                        features={features}
+                        minGuests={minGuests}
+                        maxGuests={maxGuests}
+                        size={size}
+                        weekdayPrice={weekdayPrice}
+                        weekendPrice={weekendPrice}
+                    />
                 </div>
             </div>
         );
@@ -96,9 +120,34 @@ BookingModal.propTypes = {
     toggleModal: PropTypes.func.isRequired,
     startTime: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]).isRequired,
     endTime: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]).isRequired,
+    roomId: PropTypes.string.isRequired,
+    roomName: PropTypes.string.isRequired,
+    bathrooms: PropTypes.number.isRequired,
+    beds: PropTypes.number.isRequired,
+    checkInEarly: PropTypes.string.isRequired,
+    checkInLate: PropTypes.string.isRequired,
+    checkOut: PropTypes.string.isRequired,
+    features: PropTypes.shape({
+        /* eslint-disable quote-props */
+        'Wi-Fi': PropTypes.bool,
+        'Breakfast': PropTypes.bool,
+        'Mini-Bar': PropTypes.bool,
+        'Room-Service': PropTypes.bool,
+        'Television': PropTypes.bool,
+        'Air-Conditioner': PropTypes.bool,
+        'Refrigerator': PropTypes.bool,
+        'Sofa': PropTypes.bool,
+        'Great-View': PropTypes.bool,
+        'Smoke-Free': PropTypes.bool,
+        'Child-Friendly': PropTypes.bool,
+        'Pet-Friendly': PropTypes.bool,
+        /* eslint-enable */
+    }).isRequired,
+    minGuests: PropTypes.number.isRequired,
+    maxGuests: PropTypes.number.isRequired,
+    size: PropTypes.number.isRequired,
     weekdayPrice: PropTypes.number.isRequired,
     weekendPrice: PropTypes.number.isRequired,
-    roomId: PropTypes.string.isRequired,
 };
 
 export default BookingModal;

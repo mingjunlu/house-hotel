@@ -58,13 +58,12 @@
 
 .features {
     display: flex;
-    flex-wrap: wrap;
-    margin-left: -16px;
+    max-width: 530px;
     margin-bottom: 26px;
 }
 
 .feature {
-    flex-basis: 11%;
+    flex-basis: 9%;
     pointer-events: none;
     user-select: none;
     margin-top: 27px;

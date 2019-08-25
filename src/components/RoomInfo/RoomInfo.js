@@ -91,11 +91,22 @@ class RoomInfo extends React.Component {
                 {isModalOpen && (
                     <BookingModal
                         toggleModal={this.toggleModal}
+                        roomId={roomId}
                         startTime={hasDifferentRange && startDate}
                         endTime={hasDifferentRange && endDate}
+                        roomName={roomName}
+                        bathrooms={info.bathrooms}
+                        beds={info.beds}
+                        checkInEarly={info.checkInEarly}
+                        checkInLate={info.checkInLate}
+                        checkOut={info.checkOut}
+                        details={info.details.join('；')}
+                        features={info.features}
+                        minGuests={info.minGuests}
+                        maxGuests={info.maxGuests}
+                        size={info.size}
                         weekdayPrice={info.weekdayPrice}
                         weekendPrice={info.weekendPrice}
-                        roomId={roomId}
                     />
                 )}
                 <div
