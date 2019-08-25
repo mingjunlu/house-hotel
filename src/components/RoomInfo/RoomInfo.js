@@ -8,8 +8,9 @@ import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
 import '../../styles/datePicker.css';
 import css from '../../styles/RoomInfo/RoomInfo.module.css';
-import BookingModal from '../BookingModal/BookingModal';
 import Mockup from './Mockup';
+import BookingModal from '../BookingModal/BookingModal';
+import Lightbox from './Lightbox';
 import Sidebar from './Sidebar';
 import RoomStatus from './RoomStatus';
 
@@ -20,6 +21,7 @@ class RoomInfo extends React.Component {
         startDate: tomorrow.valueOf(),
         endDate: tomorrow.add(1, 'day').valueOf(),
         isModalOpen: false,
+        isLightboxOpen: false,
         isLoading: true,
         hasError: false,
         imageUrls: [],
@@ -55,6 +57,12 @@ class RoomInfo extends React.Component {
         }));
     }
 
+    toggleLightbox = () => {
+        this.setState((prevState) => ({
+            isLightboxOpen: !prevState.isLightboxOpen,
+        }));
+    }
+
     updateRange = ({ pickerRoomInfo }) => {
         this.setState({
             startDate: pickerRoomInfo.startDate.valueOf(),
@@ -70,6 +78,7 @@ class RoomInfo extends React.Component {
             startDate,
             endDate,
             isModalOpen,
+            isLightboxOpen,
             isLoading,
             hasError,
             imageUrls,
@@ -100,7 +109,6 @@ class RoomInfo extends React.Component {
                         checkInEarly={info.checkInEarly}
                         checkInLate={info.checkInLate}
                         checkOut={info.checkOut}
-                        details={info.details.join('；')}
                         features={info.features}
                         minGuests={info.minGuests}
                         maxGuests={info.maxGuests}
@@ -109,12 +117,24 @@ class RoomInfo extends React.Component {
                         weekendPrice={info.weekendPrice}
                     />
                 )}
+                {isLightboxOpen && (
+                    <Lightbox
+                        toggleLightbox={this.toggleLightbox}
+                        imageUrls={imageUrls}
+                    />
+                )}
                 <div
                     className={css.container}
-                    style={{ ...(isModalOpen ? { maxHeight: '100vh', overflow: 'hidden' } : {}) }}
+                    style={{
+                        ...((isModalOpen || isLightboxOpen)
+                            ? { maxHeight: '100vh', overflow: 'hidden' }
+                            : {}
+                        ),
+                    }}
                 >
                     <Sidebar
                         toggleModal={this.toggleModal}
+                        toggleLightbox={this.toggleLightbox}
                         imageUrls={imageUrls}
                         totalAmount={totalAmount}
                         nights={nights}
@@ -129,7 +149,7 @@ class RoomInfo extends React.Component {
                         checkInEarly={info.checkInEarly}
                         checkInLate={info.checkInLate}
                         checkOut={info.checkOut}
-                        details={info.details.join('；')}
+                        details={info.details}
                         features={info.features}
                         minGuests={info.minGuests}
                         maxGuests={info.maxGuests}

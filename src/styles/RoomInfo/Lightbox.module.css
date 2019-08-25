@@ -1,0 +1,57 @@
+.overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    backdrop-filter: blur(20px);
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    z-index: 2;
+    min-width: 1366px;
+    min-height: 768px;
+    padding: 24px;
+}
+
+.container {
+    width: 1110px;
+    display: flex;
+}
+
+.button {
+    align-self: center;
+    padding: 0 14.65px;
+    outline: none;
+}
+
+.button:disabled {
+    opacity: 0.2;
+}
+
+.button:disabled:hover {
+    cursor: not-allowed;
+}
+
+.button:not(:disabled):active {
+    transform: translateY(3px);
+}
+
+.pictures {
+    flex-grow: 1;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.picture {
+    position: absolute;
+    margin: 0 auto;
+}
+
+.image {
+    display: block;
+    max-width: 950px;
+}

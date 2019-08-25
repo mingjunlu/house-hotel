@@ -5,6 +5,11 @@
     background-size: cover;
     background-position: center;
     position: relative;
+    outline: none;
+}
+
+.header:hover {
+    cursor: pointer;
 }
 
 .nav {

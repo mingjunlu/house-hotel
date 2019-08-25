@@ -36,8 +36,9 @@ exports.handler = async (event) => {
         };
         const imageUrls = room[0].imageUrl.map((url) => {
             const urlParts = url.split('&');
-            urlParts.push('h=1068');
-            return urlParts.map((part) => (part.startsWith('w=') ? 'w=573' : part)).join('&');
+            return urlParts
+                .filter((part) => (!part.startsWith('w=') && !part.startsWith('h=')))
+                .join('&');
         });
         return { imageUrls, info, reservations: booking };
     };

@@ -55,7 +55,7 @@ const RoomStatus = (props) => {
                     <p>{`退房時間：${checkOut}`}</p>
                 </div>
                 <ul className={css.roomDetails}>
-                    {details.split('；').map((sentence) => (
+                    {details.map((sentence) => (
                         <li key={sentence}>{`${sentence}.`}</li>
                     ))}
                 </ul>
@@ -107,7 +107,7 @@ RoomStatus.propTypes = {
     checkInEarly: PropTypes.string.isRequired,
     checkInLate: PropTypes.string.isRequired,
     checkOut: PropTypes.string.isRequired,
-    details: PropTypes.string.isRequired,
+    details: PropTypes.arrayOf(PropTypes.string).isRequired,
     features: PropTypes.shape({
         /* eslint-disable quote-props */
         'Wi-Fi': PropTypes.bool,
