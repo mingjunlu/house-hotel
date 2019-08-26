@@ -26,7 +26,7 @@ exports.handler = async (event) => {
         console.log(`${httpMethod} ${path}`);
         const resp = await axios.get(`${API_URL}/rooms`, {
             headers: {
-                'Content-Type': 'application/json',
+                'Content-Type': 'application/json; charset=utf-8',
                 Accept: 'application/json',
                 Authorization: API_KEY,
             },

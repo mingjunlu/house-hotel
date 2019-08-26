@@ -37,6 +37,10 @@
     border: 1px solid white;
 }
 
+.input::placeholder {
+    opacity: 0.5;
+}
+
 button.input {
     position: relative;
 }

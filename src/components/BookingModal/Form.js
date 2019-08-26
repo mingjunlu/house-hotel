@@ -5,7 +5,7 @@ import { Calendar } from 'react-date-range';
 import calculateBill from '../../utils/calculateBill';
 import css from '../../styles/BookingModal/Form.module.css';
 
-const fmt = 'YYYY - MM - DD';
+const fmt = 'YYYY-MM-DD';
 const tomorrow = dayjs().startOf('day').add(1, 'day');
 
 class Form extends React.Component {
@@ -65,9 +65,13 @@ class Form extends React.Component {
         this.setState({ name: value });
     }
 
+    trimName = () => {
+        this.setState((prevState) => ({ name: prevState.name.trim() }));
+    }
+
     updatePhone = (event) => {
-        const rawInput = event.target.value;
-        const cleanText = rawInput.replace(/-|\./g, '').trim(); // 去掉小數點和連字號
+        const { value: rawInput } = event.target;
+        const cleanText = rawInput.replace(/\./g, '').trim(); // 去掉小數點和空白
         const isValid = !Number.isNaN(Number(cleanText)); // 只接受數字
         if (isValid) { this.setState({ phone: cleanText }); }
     }
@@ -81,12 +85,18 @@ class Form extends React.Component {
             startDate,
             endDate,
         } = this.state;
-        submitForm({
-            name,
-            phone,
-            startTime: startDate,
-            endTime: endDate,
-        });
+
+        const isNameValid = !!name;
+        const isPhoneValid = /^09[0-9]{8}$/.test(phone);
+        const isRangeValid = dayjs(endDate).isAfter(dayjs(startDate), 'day');
+
+        if (isNameValid && isPhoneValid && isRangeValid) {
+            const checkInOn = dayjs(startDate).format(fmt);
+            const checkOutOn = dayjs(endDate).subtract(1, 'day').format(fmt);
+            const isOneNight = dayjs(checkInOn).isSame(dayjs(checkOutOn), 'day');
+            const range = isOneNight ? [checkInOn] : [checkInOn, checkOutOn];
+            submitForm({ name, tel: phone, date: range });
+        }
     }
 
     render() {
@@ -121,6 +131,7 @@ class Form extends React.Component {
                             autoComplete="off"
                             value={name}
                             onChange={this.updateName}
+                            onBlur={this.trimName}
                         />
                     </label>
                     <label htmlFor="tel" className={css.label}>
@@ -132,6 +143,7 @@ class Form extends React.Component {
                             minLength={10}
                             maxLength={10}
                             className={css.input}
+                            placeholder="09XXXXXXXX"
                             autoComplete="off"
                             value={phone}
                             onChange={this.updatePhone}
@@ -140,7 +152,7 @@ class Form extends React.Component {
                     <p className={css.label}>
                         <span className={css.labelText}>入住日期</span>
                         <button type="button" className={css.input} onClick={this.toggleStartDatePicker}>
-                            {dayjs(startDate).format(fmt)}
+                            {dayjs(startDate).format('YYYY - MM - DD')}
                         </button>
                     </p>
                     <div className={css.datePicker} style={{ display: isPickingStartDate ? 'block' : null }}>
@@ -156,7 +168,7 @@ class Form extends React.Component {
                     <p className={css.label}>
                         <span className={css.labelText}>退房日期</span>
                         <button type="button" className={css.input} onClick={this.toggleStartEndPicker}>
-                            {dayjs(endDate).format(fmt)}
+                            {dayjs(endDate).format('YYYY - MM - DD')}
                         </button>
                     </p>
                     <div className={css.datePicker} style={{ display: isPickingEndDate ? 'block' : null }}>
