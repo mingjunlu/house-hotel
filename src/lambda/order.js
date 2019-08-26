@@ -47,7 +47,7 @@ exports.handler = async (event) => {
         const reqBody = JSON.parse(body);
         reqBody.tel = reqBody.tel
             .split('')
-            .map((char, idx) => ((idx > 1 && idx < 8) ? '*' : char))
+            .map((char, idx) => ((idx > 1 && idx < 7) ? '*' : char))
             .join('');
         console.log(JSON.stringify(reqBody));
 
