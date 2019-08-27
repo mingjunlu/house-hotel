@@ -3,6 +3,8 @@ import css from '../../styles/HomePage/Sidebar.module.css';
 import logo from '../../assets/homepage/logo.svg';
 import BackgroundSlider from './BackgroundSlider';
 
+const designUrl = 'https://challenge.thef2e.com/user/2232?schedule=3968#works-3968';
+
 class Sidebar extends React.Component {
     shouldComponentUpdate() {
         return false;
@@ -23,6 +25,10 @@ class Sidebar extends React.Component {
                     <a className={css.email} href="mailto:house@hotel.com">HOUSE@HOTEL.COM</a>
                 </address>
                 <BackgroundSlider />
+                <footer className={css.footer}>
+                    <span>UI DESIGN by </span>
+                    <a href={designUrl} target="_blank" rel="noopener noreferrer">Pei-Chuan Li</a>
+                </footer>
             </header>
         );
     }
