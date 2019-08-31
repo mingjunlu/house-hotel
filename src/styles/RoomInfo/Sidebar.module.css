@@ -1,11 +1,10 @@
 .header {
     flex-shrink: 0;
-    min-height: 100vh;
     width: 573px;
-    background-size: cover;
-    background-position: center;
-    position: relative;
     outline: none;
+    position: fixed;
+    top: 0;
+    bottom: 0;
 }
 
 .header:hover {
@@ -22,7 +21,6 @@
     display: flex;
     align-items: center;
     padding: 12px;
-    filter: contrast(250%) brightness(250%);
 }
 
 .navLinkText {

@@ -14,7 +14,9 @@ const Sidebar = (props) => {
         nights,
     } = props;
     const openLightbox = (event) => {
-        if (event.target.tagName === 'HEADER') {
+        const { tagName } = event.target;
+        const nonTargets = ['BUTTON', 'INPUT', 'DIV', 'LABEL'];
+        if (!nonTargets.includes(tagName)) {
             toggleLightbox();
         }
     };

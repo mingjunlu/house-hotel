@@ -8,6 +8,15 @@
     z-index: -2;
 }
 
+.slide::after {
+    content: "";
+    background: transparent linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgb(255, 255, 255) 100%);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 573px;
+}
+
 .image {
     display: block;
 }

@@ -23,10 +23,10 @@ class RoomInfo extends React.Component {
         isModalOpen: false,
         isLightboxOpen: false,
         isLoading: true,
-        hasError: false,
+        // hasError: false,
         imageUrls: [],
         info: {},
-        reservations: [],
+        // reservations: [],
     }
 
     async componentDidMount() {
@@ -35,16 +35,16 @@ class RoomInfo extends React.Component {
             const { roomId } = locationState;
             try {
                 const resp = await axios.get(`/.netlify/functions/room?id=${roomId}`);
-                const { imageUrls, info, reservations } = resp.data;
+                const { imageUrls, info } = resp.data;
                 this.setState({
                     imageUrls,
                     info,
-                    reservations,
+                    // reservations,
                     isLoading: false,
                 });
             } catch (err) {
                 this.setState({
-                    hasError: true,
+                    // hasError: true,
                     isLoading: false,
                 });
             }
@@ -80,10 +80,10 @@ class RoomInfo extends React.Component {
             isModalOpen,
             isLightboxOpen,
             isLoading,
-            hasError,
+            // hasError,
             imageUrls,
             info,
-            reservations,
+            // reservations,
         } = this.state;
         if (isLoading) { return <Mockup roomName={roomName} />; }
         const hasDifferentStartDate = !dayjs(startDate).isSame(dayjs(), 'day');

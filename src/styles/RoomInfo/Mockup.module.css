@@ -25,17 +25,23 @@
 }
 
 .nav {
-    display: flex;
-    align-items: center;
-    margin-top: 87px;
-    margin-left: 126px;
-    filter: contrast(250%) brightness(250%);
+    display: inline-block;
+    margin-top: 75px;
+    margin-left: 114px;
 }
 
 .navLink {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+}
+
+.navLinkText {
+    flex-shrink: 0;
     font-family: "Noto Sans TC";
+    font-size: 14px;
     font-weight: 100;
-    line-height: 20px;
+    line-height: 24px;
     margin-left: 9.68px;
     transform: translateY(-1.5px);
 }
